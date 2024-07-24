@@ -1,0 +1,12 @@
+get:
+    tags:
+      - products
+    operationId: findAllProducts
+    summary: List all products
+    responses:
+      '200':
+        description: Returns a list of products
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/ProductApiResponse.yaml#/components/schemas/ProductApiResponse"

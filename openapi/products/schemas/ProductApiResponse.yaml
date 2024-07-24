@@ -1,0 +1,9 @@
+components:
+  schemas:
+    ProductApiResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: "./ProductApi.yaml#/components/schemas/ProductApi"

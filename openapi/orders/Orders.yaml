@@ -1,0 +1,12 @@
+get:
+  tags:
+    - orders
+  operationId: findAllOrders
+  summary: List all orders
+  responses:
+    '200':
+      description: Returns a list of orders
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/OrderApi.yaml#/components/schemas/OrderApi"
