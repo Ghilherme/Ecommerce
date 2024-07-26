@@ -10,3 +10,15 @@ get:
           application/json:
             schema:
               $ref: "./schemas/ProductApiResponse.yaml#/components/schemas/ProductApiResponse"
+post:
+  tags:
+    - products
+  operationId: saveProduct
+  summary: Create a single product
+  responses:
+    '200':
+      description: Returns the product created
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/ProductApi.yaml#/components/schemas/ProductApi"

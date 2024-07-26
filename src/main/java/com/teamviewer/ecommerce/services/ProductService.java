@@ -1,28 +1,18 @@
 package com.teamviewer.ecommerce.services;
 
 import com.teamviewer.ecommerce.domain.Product;
-import com.teamviewer.ecommerce.entity.ProductEntity;
-import com.teamviewer.ecommerce.mappers.ProductMapper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class ProductService implements IProduct {
+public interface ProductService {
 
-    private final ProductMapper productMapper;
+    List<Product> findAllProducts();
 
-    @Override
-    public List<Product> findAllProducts() {
-        ProductEntity entity = ProductEntity.builder()
-                .id("id")
-                .description("description")
-                .name("tste name")
-                .price(100)
-                .build();
+    Product findById(String id);
 
-        return List.of(productMapper.fromEntityToDomain(entity));
-    }
+    Product createProduct(Product product);
+
+    Product updateProduct(Product product);
+
+    boolean deleteById(String id);
 }
