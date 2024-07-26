@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 public class TestUtils {
     public static final String PRODUCT_ENDPOINT = "/api/products";
     public static final String PRODUCT_ID = "2a2fbac2-0f95-4cfa-abd2-a50cb0a77227";
+    public static final String PRODUCT_ID_ENDPOINT = PRODUCT_ENDPOINT + "/" + PRODUCT_ID;
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
