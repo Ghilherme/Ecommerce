@@ -9,4 +9,6 @@ paths:
   /api/products/{id}:
     $ref: "./products/Products.yaml#/paths/~1api~1products~1{id}"
   /api/orders:
-    $ref: "./orders/Orders.yaml"
+    $ref: "./orders/Orders.yaml#/paths/~1api~1orders"
+  /api/orders/{id}:
+    $ref: "./orders/Orders.yaml#/paths/~1api~1orders~1{id}"

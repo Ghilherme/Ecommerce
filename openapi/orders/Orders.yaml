@@ -1,12 +1,97 @@
-get:
-  tags:
-    - orders
-  operationId: findAllOrders
-  summary: List all orders
-  responses:
-    '200':
-      description: Returns a list of orders
-      content:
-        application/json:
+openapi: 3.0.3
+info:
+  title: Order specification
+  description: Order OpenApi spec
+  version: 1.0.0
+
+paths:
+  /api/orders:
+    get:
+      tags:
+        - orders
+      operationId: findAllOrders
+      summary: List all orders
+      responses:
+        '200':
+          description: Returns a list of orders
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderApiResponse.yaml#/components/schemas/OrderApiResponse"
+    post:
+      tags:
+        - orders
+      operationId: saveOrder
+      summary: Create a single orders
+      responses:
+        '201':
+          description: Returns the order created
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderApi.yaml#/components/schemas/OrderApi"
+  /api/orders/{id}:
+    get:
+      tags:
+        - orders
+      operationId: findOrderById
+      summary: Get a single order by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
           schema:
-            $ref: "./schemas/OrderApi.yaml#/components/schemas/OrderApi"
+            type: string
+          description: The order ID
+      responses:
+        '200':
+          description: Returns the order
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderApi.yaml#/components/schemas/OrderApi"
+        '404':
+          description: Order not found
+    put:
+      tags:
+        - orders
+      operationId: updateOrder
+      summary: Update an existing order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/OrderApi.yaml#/components/schemas/OrderApi"
+      responses:
+        '200':
+          description: Returns the updated order
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderApi.yaml#/components/schemas/OrderApi"
+        '404':
+          description: Order not found
+    delete:
+      tags:
+        - orders
+      operationId: deleteOrder
+      summary: Delete a order by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order ID
+      responses:
+        '204':
+          description: Order deleted successfully
+        '404':
+          description: Order not found

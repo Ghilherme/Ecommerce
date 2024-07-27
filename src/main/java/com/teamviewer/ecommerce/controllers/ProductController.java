@@ -72,8 +72,7 @@ public class ProductController {
         }
 
         product.setId(id);
-        Product f = productMapper.fromApiToDomain(product);
-        Product created = productService.updateProduct(f);
+        Product created = productService.updateProduct(productMapper.fromApiToDomain(product));
 
         ProductApi response = productMapper.fromDomainToApi(created);
 

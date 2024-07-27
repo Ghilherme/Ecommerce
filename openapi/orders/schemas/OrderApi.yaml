@@ -1,12 +1,19 @@
 components:
   schemas:
     OrderApi:
+      required:
+        - name
+        - total_price_amount
+        - total_quantity_items
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        date:
-          type: string
-          format: date-time
+        total_price_amount:
+          type: number
+          format: double
+        total_quantity_items:
+          type: number
+          format: int

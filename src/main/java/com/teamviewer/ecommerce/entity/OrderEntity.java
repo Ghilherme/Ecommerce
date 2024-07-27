@@ -1,17 +1,19 @@
 package com.teamviewer.ecommerce.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
 
-@Entity(name = "products")
+@Entity(name = "orders")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductEntity {
+public class OrderEntity {
 
     @Id
     @UuidGenerator
@@ -21,9 +23,10 @@ public class ProductEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "total_price_amount")
+    private double totalPriceAmount;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "total_quantity_items")
+    private int totalQuantityItems;
+
 }
