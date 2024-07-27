@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.teamviewer.ecommerce.TestUtils.PRODUCT_ID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -57,24 +58,24 @@ public class ProductServiceTest {
 
     @Test
     void testFindById() {
-        when(productRepository.findById("1")).thenReturn(Optional.of(productEntityMock));
+        when(productRepository.findById(PRODUCT_ID)).thenReturn(Optional.of(productEntityMock));
         when(productMapper.fromEntityToDomain(any(ProductEntity.class))).thenReturn(productMock);
 
-        Product foundProduct = productService.findById("1");
+        Product foundProduct = productService.findById(PRODUCT_ID);
 
         assertNotNull(foundProduct);
-        assertEquals("1", foundProduct.getId());
-        verify(productRepository, times(1)).findById("1");
+        assertEquals(PRODUCT_ID, foundProduct.getId());
+        verify(productRepository, times(1)).findById(PRODUCT_ID);
     }
 
     @Test
     void testFindById_NotFound() {
-        when(productRepository.findById("1")).thenReturn(Optional.empty());
+        when(productRepository.findById(PRODUCT_ID)).thenReturn(Optional.empty());
 
-        Product foundProduct = productService.findById("1");
+        Product foundProduct = productService.findById(PRODUCT_ID);
 
         assertNull(foundProduct);
-        verify(productRepository, times(1)).findById("1");
+        verify(productRepository, times(1)).findById(PRODUCT_ID);
     }
 
     @Test
@@ -86,7 +87,7 @@ public class ProductServiceTest {
         Product createdProduct = productService.createProduct(productMock);
 
         assertNotNull(createdProduct);
-        assertEquals("1", createdProduct.getId());
+        assertEquals(PRODUCT_ID, createdProduct.getId());
         verify(productRepository, times(1)).save(any(ProductEntity.class));
     }
 
@@ -99,33 +100,33 @@ public class ProductServiceTest {
         Product updatedProduct = productService.updateProduct(productMock);
 
         assertNotNull(updatedProduct);
-        assertEquals("1", updatedProduct.getId());
+        assertEquals(PRODUCT_ID, updatedProduct.getId());
         verify(productRepository, times(1)).save(any(ProductEntity.class));
     }
 
     @Test
     void testDeleteById() {
-        when(productRepository.existsById("1")).thenReturn(true);
+        when(productRepository.existsById(PRODUCT_ID)).thenReturn(true);
 
-        boolean isDeleted = productService.deleteById("1");
+        boolean isDeleted = productService.deleteById(PRODUCT_ID);
 
         assertTrue(isDeleted);
-        verify(productRepository, times(1)).deleteById("1");
+        verify(productRepository, times(1)).deleteById(PRODUCT_ID);
     }
 
     @Test
     void testDeleteById_NotFound() {
-        when(productRepository.existsById("1")).thenReturn(false);
+        when(productRepository.existsById(PRODUCT_ID)).thenReturn(false);
 
-        boolean isDeleted = productService.deleteById("1");
+        boolean isDeleted = productService.deleteById(PRODUCT_ID);
 
         assertFalse(isDeleted);
-        verify(productRepository, never()).deleteById("1");
+        verify(productRepository, never()).deleteById(PRODUCT_ID);
     }
 
     private static @NotNull ProductEntity buildMockProductEntity() {
         ProductEntity productEntity = new ProductEntity();
-        productEntity.setId("1");
+        productEntity.setId(PRODUCT_ID);
         productEntity.setName("Test Product");
         productEntity.setDescription("Description");
         productEntity.setPrice(10.0);
@@ -134,7 +135,7 @@ public class ProductServiceTest {
 
     private static @NotNull Product buildMockProduct() {
         Product product = new Product();
-        product.setId("1");
+        product.setId(PRODUCT_ID);
         product.setName("Test Product");
         product.setDescription("Description");
         product.setPrice(10.0);

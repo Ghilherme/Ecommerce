@@ -54,7 +54,7 @@ public class ProductIT extends EcommerceApplicationTests {
     @Test
     @Sql(scripts = "classpath:scripts/populate.sql")
     public void whenPostProduct_thenProductIsCreatedSuccessfully() throws IOException {
-        ProductApi postBody = TestUtils.readJsonFromFile("src/test/resources/data/post_body_product.json", ProductApi.class);
+        ProductApi postBody = TestUtils.readJsonFromFile("src/test/resources/data/products/post_body_product.json", ProductApi.class);
 
         ResponseEntity<ProductApi> response = restTemplate.postForEntity(PRODUCT_ENDPOINT, postBody, ProductApi.class);
 
@@ -70,7 +70,7 @@ public class ProductIT extends EcommerceApplicationTests {
      */
     @Test
     void whenPostProductWithInvalidData_thenReturns400() throws Exception {
-        ProductApi postBody = TestUtils.readJsonFromFile("src/test/resources/data/post_body_product_invalid_data.json", ProductApi.class);
+        ProductApi postBody = TestUtils.readJsonFromFile("src/test/resources/data/products/post_body_product_invalid_data.json", ProductApi.class);
 
         ResponseEntity<ProductApi> response = restTemplate.postForEntity(PRODUCT_ENDPOINT, postBody, ProductApi.class);
 
@@ -84,7 +84,7 @@ public class ProductIT extends EcommerceApplicationTests {
     @Test
     @Sql(scripts = "classpath:scripts/populate.sql")
     public void whenUpdateProduct_thenProductIsUpdatedSuccessfully() throws IOException {
-        ProductApi putBody = TestUtils.readJsonFromFile("src/test/resources/data/put_body_product.json", ProductApi.class);
+        ProductApi putBody = TestUtils.readJsonFromFile("src/test/resources/data/products/put_body_product.json", ProductApi.class);
 
         restTemplate.put(PRODUCT_ID_ENDPOINT, putBody);
 

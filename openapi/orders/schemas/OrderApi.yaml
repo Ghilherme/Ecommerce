@@ -15,5 +15,5 @@ components:
           type: number
           format: double
         total_quantity_items:
-          type: number
-          format: int
+          type: integer
+          format: int32

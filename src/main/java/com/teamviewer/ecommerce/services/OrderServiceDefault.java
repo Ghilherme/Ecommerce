@@ -47,6 +47,10 @@ public class OrderServiceDefault implements OrderService {
 
     @Override
     public boolean deleteById(String id) {
+        if (orderRepository.existsById(id)) {
+            orderRepository.deleteById(id);
+            return true;
+        }
         return false;
     }
 
