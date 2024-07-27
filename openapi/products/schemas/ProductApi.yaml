@@ -1,6 +1,9 @@
 components:
   schemas:
     ProductApi:
+      required:
+        - name
+        - price
       type: object
       properties:
         id:

@@ -3,6 +3,7 @@ package com.teamviewer.ecommerce.controllers;
 import com.ecommerce.model.ProductApi;
 import com.ecommerce.model.ProductApiResponse;
 import com.teamviewer.ecommerce.domain.Product;
+import com.teamviewer.ecommerce.exceptions.InvalidDataException;
 import com.teamviewer.ecommerce.mappers.ProductMapper;
 import com.teamviewer.ecommerce.services.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,13 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity<ProductApi> createProduct(@RequestBody ProductApi product) {
+        if (product.getName() == null || product.getName().isEmpty()) {
+            throw new InvalidDataException("Name cannot be null or empty");
+        }
+        if (product.getPrice() == null) {
+            throw new InvalidDataException("Price cannot be null");
+        }
+
         product.setId(null);
         Product created = productService.createProduct(productMapper.fromApiToDomain(product));
         ProductApi response = productMapper.fromDomainToApi(created);
@@ -59,6 +67,10 @@ public class ProductController {
 
     @PutMapping("/products/{id}")
     public ResponseEntity<ProductApi> updateProduct(@RequestBody ProductApi product, @PathVariable String id) {
+        if (product.getId() != null) {
+           throw new InvalidDataException("Product id cannot be updated.");
+        }
+
         product.setId(id);
         Product f = productMapper.fromApiToDomain(product);
         Product created = productService.updateProduct(f);

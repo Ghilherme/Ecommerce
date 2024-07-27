@@ -66,6 +66,19 @@ public class ProductIT extends EcommerceApplicationTests {
     }
 
     /**
+     * Verifies an error message returned when creating a product with invalid data
+     */
+    @Test
+    void whenPostProductWithInvalidData_thenReturns400() throws Exception {
+        ProductApi postBody = TestUtils.readJsonFromFile("src/test/resources/data/post_body_product_invalid_data.json", ProductApi.class);
+
+        ResponseEntity<ProductApi> response = restTemplate.postForEntity(PRODUCT_ENDPOINT, postBody, ProductApi.class);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
+
+    /**
      * Verifies update of single product
      */
     @Test

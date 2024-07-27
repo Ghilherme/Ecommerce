@@ -75,6 +75,16 @@ public class ProductControllerTest {
     }
 
     @Test
+    void whenPostProductWithInvalidData_thenReturns400() throws Exception {
+        String invalidProductJson = "{ \"price\": 10.0 }";
+
+        mockMvc.perform(post("/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(invalidProductJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void whenGetProducts_thenReturnProducts() throws Exception {
 
         when(productService.findAllProducts()).thenReturn(List.of(createdProductMock));

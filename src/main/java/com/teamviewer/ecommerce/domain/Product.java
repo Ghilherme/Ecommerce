@@ -16,11 +16,11 @@ public class Product {
     @Valid
     private String id;
 
-    @NotNull
+    @NotNull(message = "Name cannot be null")
     private String name;
 
     private String description;
 
-    @NotNull
+    @NotNull(message = "Price cannot be null")
     private Double price;
 }
