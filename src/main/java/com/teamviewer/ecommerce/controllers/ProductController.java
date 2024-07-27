@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -49,7 +51,10 @@ public class ProductController {
         Product created = productService.createProduct(productMapper.fromApiToDomain(product));
         ProductApi response = productMapper.fromDomainToApi(created);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.created(UriComponentsBuilder.fromPath("/api/products/{id}")
+                        .buildAndExpand(response.getId())
+                        .toUri())
+                .body(response);
     }
 
     @PutMapping("/products/{id}")

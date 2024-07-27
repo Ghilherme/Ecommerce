@@ -5,6 +5,8 @@ info:
   version: 1.0.0
 paths:
   /api/products:
-    $ref: "./products/Products.yaml"
+    $ref: "./products/Products.yaml#/paths/~1api~1products"
+  /api/products/{id}:
+    $ref: "./products/Products.yaml#/paths/~1api~1products~1{id}"
   /api/orders:
     $ref: "./orders/Orders.yaml"

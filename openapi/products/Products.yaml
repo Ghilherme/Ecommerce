@@ -1,24 +1,97 @@
-get:
-    tags:
-      - products
-    operationId: findAllProducts
-    summary: List all products
-    responses:
-      '200':
-        description: Returns a list of products
+openapi: 3.0.3
+info:
+  title: Products specification
+  description: Products OpenApi spec
+  version: 1.0.0
+
+paths:
+  /api/products:
+    get:
+      tags:
+        - products
+      operationId: findAllProducts
+      summary: List all products
+      responses:
+        '200':
+          description: Returns a list of products
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/ProductApiResponse.yaml#/components/schemas/ProductApiResponse"
+    post:
+      tags:
+        - products
+      operationId: saveProduct
+      summary: Create a single product
+      responses:
+        '201':
+          description: Returns the product created
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/ProductApi.yaml#/components/schemas/ProductApi"
+  /api/products/{id}:
+    get:
+      tags:
+        - products
+      operationId: findProductById
+      summary: Get a single product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The product ID
+      responses:
+        '200':
+          description: Returns the product
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/ProductApi.yaml#/components/schemas/ProductApi"
+        '404':
+          description: Product not found
+    put:
+      tags:
+        - products
+      operationId: updateProduct
+      summary: Update an existing product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The product ID
+      requestBody:
         content:
           application/json:
             schema:
-              $ref: "./schemas/ProductApiResponse.yaml#/components/schemas/ProductApiResponse"
-post:
-  tags:
-    - products
-  operationId: saveProduct
-  summary: Create a single product
-  responses:
-    '200':
-      description: Returns the product created
-      content:
-        application/json:
+              $ref: "./schemas/ProductApi.yaml#/components/schemas/ProductApi"
+      responses:
+        '200':
+          description: Returns the updated product
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/ProductApi.yaml#/components/schemas/ProductApi"
+        '404':
+          description: Product not found
+    delete:
+      tags:
+        - products
+      operationId: deleteProduct
+      summary: Delete a product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
           schema:
-            $ref: "./schemas/ProductApi.yaml#/components/schemas/ProductApi"
+            type: string
+          description: The product ID
+      responses:
+        '204':
+          description: Product deleted successfully
+        '404':
+          description: Product not found

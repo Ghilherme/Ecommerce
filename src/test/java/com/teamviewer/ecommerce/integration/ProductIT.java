@@ -1,7 +1,8 @@
-package com.teamviewer.ecommerce;
+package com.teamviewer.ecommerce.integration;
 
 import com.ecommerce.model.ProductApi;
 import com.ecommerce.model.ProductApiResponse;
+import com.teamviewer.ecommerce.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +58,7 @@ public class ProductIT extends EcommerceApplicationTests {
 
         ResponseEntity<ProductApi> response = restTemplate.postForEntity(PRODUCT_ENDPOINT, postBody, ProductApi.class);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(postBody.getName(), response.getBody().getName());
         assertEquals(postBody.getDescription(), response.getBody().getDescription());

@@ -1,4 +1,4 @@
-package com.teamviewer.ecommerce;
+package com.teamviewer.ecommerce.integration;
 
 import org.testcontainers.containers.PostgreSQLContainer;
 

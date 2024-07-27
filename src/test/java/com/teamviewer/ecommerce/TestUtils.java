@@ -17,4 +17,8 @@ public class TestUtils {
         String json = new String(Files.readAllBytes(Paths.get(filePath)));
         return objectMapper.readValue(json, valueType);
     }
+
+    public static <T> T readValue(String jsonString, Class<T> valueType) throws IOException {
+        return objectMapper.readValue(jsonString, valueType);
+    }
 }
