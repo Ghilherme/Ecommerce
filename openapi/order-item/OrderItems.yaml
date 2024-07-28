@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Order items specification
+  description: Order items OpenApi spec
+  version: 1.0.0
+
+paths:
+  /api/order-items:
+    get:
+      tags:
+        - order items
+      operationId: findAllOrderItems
+      summary: List all Order Items
+      responses:
+        '200':
+          description: Returns a list of order items
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderItemApiResponse.yaml#/components/schemas/OrderItemApiResponse"
+    post:
+      tags:
+        - order items
+      operationId: saveOrderItem
+      summary: Create a single Order Item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/OrderItemApiRequest.yaml#/components/schemas/OrderItemApiRequest"
+      responses:
+        '201':
+          description: Returns the Order item created
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderItemApi.yaml#/components/schemas/OrderItemApi"
+  /api/order-items/{id}:
+    get:
+      tags:
+        - order items
+      operationId: findOrderItems
+      summary: Get a single order items by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order item ID
+      responses:
+        '200':
+          description: Returns the Order Item
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderItemApi.yaml#/components/schemas/OrderItemApi"
+        '404':
+          description: OrderItem not found
+    put:
+      tags:
+        - order items
+      operationId: updateOrderItem
+      summary: Update an existing order item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/OrderItemApiRequest.yaml#/components/schemas/OrderItemApiRequest"
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order item ID
+
+      responses:
+        '200':
+          description: Returns the updated order item
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/OrderItemApi.yaml#/components/schemas/OrderItemApi"
+        '404':
+          description: Order item not found
+    delete:
+      tags:
+        - order items
+      operationId: deleteOrderItem
+      summary: Delete a order item by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The order item ID
+      responses:
+        '204':
+          description: Order item deleted successfully
+        '404':
+          description: Order item not found

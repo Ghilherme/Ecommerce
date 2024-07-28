@@ -43,9 +43,6 @@ public class ProductIT extends EcommerceApplicationTests {
         assertNotNull(response.getBody());
         assertNotNull(response.getBody());
         assertEquals(PRODUCT_ID, response.getBody().getId());
-        assertEquals(response.getBody().getName(), response.getBody().getName());
-        assertEquals(response.getBody().getDescription(), response.getBody().getDescription());
-        assertEquals(response.getBody().getPrice(), response.getBody().getPrice());
     }
 
     /**

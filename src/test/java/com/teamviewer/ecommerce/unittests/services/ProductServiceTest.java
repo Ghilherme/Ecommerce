@@ -4,7 +4,7 @@ import com.teamviewer.ecommerce.domain.Product;
 import com.teamviewer.ecommerce.entity.ProductEntity;
 import com.teamviewer.ecommerce.mappers.ProductMapper;
 import com.teamviewer.ecommerce.repositories.ProductRepository;
-import com.teamviewer.ecommerce.services.ProductServiceDefault;
+import com.teamviewer.ecommerce.services.impl.ProductServiceDefault;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

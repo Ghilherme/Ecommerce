@@ -12,3 +12,7 @@ paths:
     $ref: "./orders/Orders.yaml#/paths/~1api~1orders"
   /api/orders/{id}:
     $ref: "./orders/Orders.yaml#/paths/~1api~1orders~1{id}"
+  /api/order-items:
+    $ref: "./order-item/OrderItems.yaml#/paths/~1api~1order-items"
+  /api/order-items/{id}:
+    $ref: "./order-item/OrderItems.yaml#/paths/~1api~1order-items~1{id}"

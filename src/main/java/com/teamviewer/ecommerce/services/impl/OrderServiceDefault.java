@@ -1,9 +1,10 @@
-package com.teamviewer.ecommerce.services;
+package com.teamviewer.ecommerce.services.impl;
 
 import com.teamviewer.ecommerce.domain.Order;
 import com.teamviewer.ecommerce.entity.OrderEntity;
 import com.teamviewer.ecommerce.mappers.OrderMapper;
 import com.teamviewer.ecommerce.repositories.OrderRepository;
+import com.teamviewer.ecommerce.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +53,12 @@ public class OrderServiceDefault implements OrderService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String generateOrderName() {
+        long orderCount = orderRepository.count();
+        return "Order #" + (orderCount + 1);
     }
 
     private Order saveOrder(Order order) {

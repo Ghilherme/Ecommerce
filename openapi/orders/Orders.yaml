@@ -55,7 +55,7 @@ paths:
     put:
       tags:
         - orders
-      operationId: updateOrder
+      operationId: updateOrderItem
       summary: Update an existing order
       parameters:
         - name: id

@@ -1,0 +1,9 @@
+components:
+  schemas:
+    OrderItemApiResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: "./OrderItemApi.yaml#/components/schemas/OrderItemApi"

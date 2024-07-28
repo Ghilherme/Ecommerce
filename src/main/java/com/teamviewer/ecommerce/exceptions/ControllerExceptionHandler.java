@@ -15,4 +15,10 @@ public class ControllerExceptionHandler {
         ErrorMessageApi errors = new ErrorMessageApi(HttpStatus.BAD_REQUEST, List.of(ex.getMessage()));
         return new ResponseEntity<>(errors, errors.getStatus());
     }
+
+    @ExceptionHandler(NoExistenceException.class)
+    public ResponseEntity<ErrorMessageApi> handleInvalidDataException(NoExistenceException ex) {
+        ErrorMessageApi errors = new ErrorMessageApi(HttpStatus.BAD_REQUEST, List.of(ex.getMessage()));
+        return new ResponseEntity<>(errors, errors.getStatus());
+    }
 }

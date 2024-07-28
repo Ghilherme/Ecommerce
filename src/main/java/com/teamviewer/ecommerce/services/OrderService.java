@@ -15,4 +15,6 @@ public interface OrderService {
     Order updateOrder(Order product);
 
     boolean deleteById(String id);
+
+    String generateOrderName();
 }

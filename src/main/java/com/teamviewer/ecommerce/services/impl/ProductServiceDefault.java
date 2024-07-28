@@ -1,9 +1,10 @@
-package com.teamviewer.ecommerce.services;
+package com.teamviewer.ecommerce.services.impl;
 
 import com.teamviewer.ecommerce.domain.Product;
 import com.teamviewer.ecommerce.entity.ProductEntity;
 import com.teamviewer.ecommerce.mappers.ProductMapper;
 import com.teamviewer.ecommerce.repositories.ProductRepository;
+import com.teamviewer.ecommerce.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -4,7 +4,7 @@ import com.teamviewer.ecommerce.domain.Order;
 import com.teamviewer.ecommerce.entity.OrderEntity;
 import com.teamviewer.ecommerce.mappers.OrderMapper;
 import com.teamviewer.ecommerce.repositories.OrderRepository;
-import com.teamviewer.ecommerce.services.OrderServiceDefault;
+import com.teamviewer.ecommerce.services.impl.OrderServiceDefault;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

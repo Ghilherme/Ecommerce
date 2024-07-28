@@ -1,0 +1,24 @@
+components:
+  schemas:
+    OrderItemApi:
+      required:
+        - order_id
+        - product_id
+        - quantity
+      type: object
+      properties:
+        id:
+          type: string
+        order_id:
+          type: string
+        product_id:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        discount:
+          type: number
+          format: double
+        final_price:
+          type: number
+          format: double
