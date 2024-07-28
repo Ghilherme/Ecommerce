@@ -1,6 +1,5 @@
 package com.teamviewer.ecommerce.services;
 
-import com.teamviewer.ecommerce.domain.Order;
 import com.teamviewer.ecommerce.domain.OrderItem;
 
 import java.util.List;

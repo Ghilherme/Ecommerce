@@ -2,7 +2,6 @@ package com.teamviewer.ecommerce.mappers;
 
 import com.ecommerce.model.OrderItemApi;
 import com.ecommerce.model.OrderItemApiRequest;
-import com.ecommerce.model.ProductApi;
 import com.teamviewer.ecommerce.domain.Order;
 import com.teamviewer.ecommerce.domain.OrderItem;
 import com.teamviewer.ecommerce.domain.Product;
