@@ -10,8 +10,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.io.IOException;
 
 import static com.teamviewer.ecommerce.TestUtils.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderItemIT extends EcommerceApplicationTests {
 
@@ -25,8 +24,8 @@ public class OrderItemIT extends EcommerceApplicationTests {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertNotNull(response.getBody().getOrders().getFirst().getId());
-        assertEquals(ORDER_ITEM_ID, response.getBody().getOrders().getFirst().getId());
+        assertNotNull(response.getBody().getOrderItems().getFirst().getId());
+        assertEquals(ORDER_ITEM_ID, response.getBody().getOrderItems().getFirst().getId());
     }
 
     /**
@@ -96,6 +95,27 @@ public class OrderItemIT extends EcommerceApplicationTests {
         assertEquals(putBody.getProductId(), response.getBody().getProductId());
         assertEquals(putBody.getOrderId(), response.getBody().getOrderId());
         assertEquals(putBody.getDiscount(), response.getBody().getDiscount());
+    }
+
+    /**
+     * Verifies update of single order item with new product and should not update.
+     */
+    @Test
+    @Sql(scripts = "classpath:scripts/populate.sql")
+    public void whenUpdateOrderItemsWithNewProduct_thenReturns400() throws IOException {
+        OrderItemApiRequest putBody = TestUtils.readJsonFromFile(
+                "src/test/resources/data/order_items/put_body_order_items_invalid.json", OrderItemApiRequest.class);
+
+        restTemplate.put(ORDER_ITEM_ID_ENDPOINT, putBody);
+
+        ResponseEntity<OrderItemApi> response = restTemplate.getForEntity(ORDER_ITEM_ID_ENDPOINT, OrderItemApi.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(ORDER_ITEM_ID, response.getBody().getId());
+        assertNotEquals(putBody.getProductId(), response.getBody().getProductId());
+        assertEquals(putBody.getOrderId(), response.getBody().getOrderId());
+        assertNotEquals(putBody.getDiscount(), response.getBody().getDiscount());
     }
 
     /**

@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
-public class OrderItemsController {
+public class OrderItemController {
     private final OrderItemService orderItemService;
     private final OrderItemMapper orderItemMapper;
 
@@ -29,7 +29,7 @@ public class OrderItemsController {
                 .map(orderItemMapper::fromDomainToApi)
                 .toList();
         OrderItemApiResponse response = new OrderItemApiResponse();
-        response.setOrders(orders);
+        response.setOrderItems(orders);
 
         return ResponseEntity.ok().body(response);
     }
@@ -49,7 +49,7 @@ public class OrderItemsController {
     @PostMapping("/order-items")
     public ResponseEntity<OrderItemApi> createOrderItem(@RequestBody OrderItemApiRequest orderItemApi) {
         if (orderItemApi.getQuantity() == null || orderItemApi.getProductId() == null) {
-            throw new InvalidDataException("Order Id  and Quantity cannot be null");
+            throw new InvalidDataException("Order Item Id and Quantity cannot be null");
         }
 
         orderItemApi.setId(null);
@@ -65,7 +65,7 @@ public class OrderItemsController {
     @PutMapping("/order-items/{id}")
     public ResponseEntity<OrderItemApi> updateOrderItem(@RequestBody OrderItemApiRequest orderItemApi, @PathVariable String id) {
         if (orderItemApi.getId() != null) {
-            throw new InvalidDataException("Order id cannot be updated.");
+            throw new InvalidDataException("Order Item Id cannot be updated.");
         }
 
         orderItemApi.setId(id);

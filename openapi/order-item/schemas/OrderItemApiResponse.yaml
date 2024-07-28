@@ -3,7 +3,7 @@ components:
     OrderItemApiResponse:
       type: object
       properties:
-        orders:
+        order_items:
           type: array
           items:
             $ref: "./OrderItemApi.yaml#/components/schemas/OrderItemApi"
