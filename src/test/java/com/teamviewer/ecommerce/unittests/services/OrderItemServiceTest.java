@@ -9,7 +9,6 @@ import com.teamviewer.ecommerce.entity.ProductEntity;
 import com.teamviewer.ecommerce.exceptions.InvalidDataException;
 import com.teamviewer.ecommerce.mappers.OrderItemMapper;
 import com.teamviewer.ecommerce.repositories.OrderItemRepository;
-import com.teamviewer.ecommerce.services.OrderItemService;
 import com.teamviewer.ecommerce.services.OrderService;
 import com.teamviewer.ecommerce.services.ProductService;
 import com.teamviewer.ecommerce.services.impl.OrderItemServiceDefault;
