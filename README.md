@@ -3,8 +3,8 @@
 SpringBoot web application that integrates with a PostgreSQL database and uses Docker to run in a container. The application should have a REST API that allows users to perform CRUD (create, read, update, delete) operations on a data model representing a simple e-commerce platform. The REST API should be defined using OpenAPI.
 
 ## Prerequisites
-- JDK 17
-- Maven 3.8.6
+- JDK 21
+- Maven 3.9.0
 - Docker
 
 ## Build app
@@ -37,8 +37,8 @@ docker-compose up
 ## Technologies
 - Java 21
 - OpenApi 3.0
-- Spring Boot 2.6.x
-- Maven 3.8.x
+- Spring Boot
+- Maven 
 - PostgreSQL
 - Hibernate
 - JUnit 5
